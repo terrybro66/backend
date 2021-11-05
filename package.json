@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
-},
-"engines": {
+  },
+  "engines": {
     "node": "10.16.0"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/terrybro66/backend.git"
