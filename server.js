@@ -1,13 +1,10 @@
 const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
 const app = express();
+const mongoose = require("mongoose");
 
-require("dotenv").config();
-
-app.use(cors());
-
-const db = process.env.MONGO_URI;
+const db =
+  process.env.MONGO_URI ||
+  "mongodb+srv://terry:terry61@cluster0.kgsov.mongodb.net/myDb?retryWrites=true&w=majority";
 
 const connectDB = async () => {
   try {
@@ -24,9 +21,6 @@ const connectDB = async () => {
 
 connectDB();
 
-app.use(express.json()); //Used to parse JSON bodies
-app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
-
 const eventSchema = {
   type: String,
   title: String,
@@ -39,15 +33,4 @@ app.get("/", (req, res) => {
   Event.find().then((events) => res.json(events));
 });
 
-app.post("/", (req, res) => {
-  const event = new Event({
-    type: req.body.type,
-    title: req.body.type,
-    description: req.body.type,
-  });
-  event.save();
-});
-
-app.listen(process.env.PORT || 5000, () => {
-  console.log("listening ....");
-});
+app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
