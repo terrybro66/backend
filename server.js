@@ -33,4 +33,9 @@ app.get("/", (req, res) => {
   Event.find().then((events) => res.json(events));
 });
 
+app.post("/", (req, res) => {
+  const event = new Event(req.body);
+  event.save();
+});
+
 app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
