@@ -2,9 +2,9 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-const db =
-  process.env.MONGO_URI ||
-  "mongodb+srv://terry:terry61@cluster0.kgsov.mongodb.net/myDb?retryWrites=true&w=majority";
+require("dotenv").config();
+
+const db = process.env.MONGO_URI;
 
 const connectDB = async () => {
   try {
