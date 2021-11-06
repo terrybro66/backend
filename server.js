@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 
+app.use(express.json());
+
 const db = process.env.MONGO_URI;
 
 const connectDB = async () => {
