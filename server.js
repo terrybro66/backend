@@ -21,11 +21,13 @@ const connectDB = async () => {
 
 connectDB();
 
-const eventSchema = {
+const Schema = mongoose.Schema;
+
+const eventSchema = new Schema({
   type: String,
   title: String,
   description: String,
-};
+});
 
 const Event = mongoose.model("Event", eventSchema);
 
