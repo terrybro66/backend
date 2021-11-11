@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://guarded-castle-03810.herokuapp.com/"
+    "https://guarded-castle-03810.herokuapp.com"
   );
   res.header(
     "Access-Control-Allow-Headers",
