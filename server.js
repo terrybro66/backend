@@ -6,6 +6,15 @@ require("dotenv").config();
 
 app.use(express.json());
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 const db = process.env.MONGO_URI;
 
 const connectDB = async () => {
@@ -25,12 +34,17 @@ connectDB();
 
 const Schema = mongoose.Schema;
 
-const eventSchema = new Schema({
-  type: String,
-  title: String,
-  description: String,
-});
-
+const eventSchema = new Schema(
+  {
+    type: String,
+    title: String,
+    description: String,
+  },
+  {
+    timestamps: true,
+  }
+);
+//db.collectionName.find({ start_date: new Date() }).pretty();
 const Event = mongoose.model("Event", eventSchema);
 
 app.get("/", (req, res) => {
@@ -42,4 +56,4 @@ app.post("/", (req, res) => {
   event.save();
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
+app.listen(process.env.PORT || 5000, () => console.log("Server is running..."));
